@@ -1,21 +1,22 @@
-# 🍔 Food Delivery Time Prediction
+# 🍔 Food Delivery Time Prediction System
 
 ## 📌 Project Overview
 
-This project focuses on analyzing and predicting food delivery times using real-world features such as distance, traffic conditions, weather, and courier experience.
+This project focuses on analyzing and predicting food delivery time using real-world factors such as distance, traffic conditions, weather, and courier experience.
 
-The objective is to:
+The goal of this project is to:
 
-* Perform **data cleaning & preprocessing**
+* Perform **data cleaning and preprocessing**
 * Conduct **Exploratory Data Analysis (EDA)**
 * Extract insights using **SQL queries**
-* Prepare data for **Machine Learning models**
+* Build and evaluate **Machine Learning models**
+* Derive **business insights for delivery optimization**
 
 ---
 
 ## 🔗 Dataset Source
 
-Dataset used in this project is from Kaggle:
+Dataset used in this project:
 
 👉 https://www.kaggle.com/datasets/denkuznetz/food-delivery-time-prediction/data
 
@@ -29,19 +30,20 @@ Dataset used in this project is from Kaggle:
 * `Time_of_Day` → Morning / Afternoon / Evening / Night
 * `Courier_Experience_yrs` → Experience of delivery agent
 * `Vehicle_Type` → Scooter / Bike / Car
-* `Preparation_Time_min` → Time taken to prepare food
-* `Delivery_Time_min` → Target variable
+* `Preparation_Time_min` → Food preparation time
+* `Delivery_Time_min` → 🎯 Target variable
 
 ---
 
-## 🧹 Data Cleaning
+## 🧹 Data Cleaning & Preprocessing
 
 * Checked and removed duplicate records
 * Handled missing values:
 
-  * Categorical columns → Filled with **mode**
-  * Numerical columns → Filled with **median**
-* Ensured dataset consistency
+  * Categorical features → filled using **mode**
+  * Numerical features → filled using **median**
+* Converted categorical variables using **one-hot encoding**
+* Prepared dataset for machine learning pipeline
 
 ---
 
@@ -51,17 +53,17 @@ Dataset used in this project is from Kaggle:
 
 * Distribution of delivery time
 * Distance vs delivery time relationship
-* Traffic impact on delivery
-* Time of day influence
-* Courier experience effect
+* Impact of traffic levels
+* Effect of time of day (peak hours)
+* Courier experience vs delivery performance
 * Vehicle type comparison
 
 ### 📈 Key Insights:
 
-* Longer distances increase delivery time
-* High traffic significantly delays orders
-* Experienced couriers deliver faster
-* Peak hours (evening/night) show higher delays
+* Delivery time increases with **distance**
+* **High traffic** significantly increases delays
+* **Peak hours (evening/night)** show maximum delivery time
+* More experienced couriers reduce delivery variability
 
 ---
 
@@ -71,17 +73,63 @@ Dataset used in this project is from Kaggle:
 * Observed strong relationships:
 
   * Distance ↔ Delivery Time
-  * Traffic ↔ Delivery Time
+  * Traffic Level ↔ Delivery Time
 
 ---
 
-## 🗄️ SQL Analysis
+## 🗄️ SQL-Based Analysis
 
 Performed analysis using in-memory SQLite:
 
-* Average delivery time per traffic level
-* Peak delay times based on time of day
-* Distance category impact (Short / Medium / Long)
+* Average delivery time by traffic level
+* Peak delay analysis based on time of day
+* Distance-based categorization (Short / Medium / Long)
+
+These insights were later validated using machine learning models.
+
+---
+
+## 🤖 Machine Learning Modeling
+
+### Models Used:
+
+* Linear Regression (**Baseline Model**)
+* XGBoost Regressor (with hyperparameter tuning)
+* LightGBM Regressor (with hyperparameter tuning)
+
+### 📊 Evaluation Metrics:
+
+* Mean Absolute Error (MAE)
+* Root Mean Squared Error (RMSE)
+
+### 📈 Results:
+
+| Model             | MAE  | RMSE |
+| ----------------- | ---- | ---- |
+| Linear Regression | 6.13 | 9.05 |
+| XGBoost           | 6.75 | 9.55 |
+| LightGBM          | 6.75 | 9.74 |
+
+### 🧠 Key Observation:
+
+* Linear Regression outperformed advanced models, indicating **strong linear relationships** between features and delivery time
+* Tree-based models did not provide additional improvement for this dataset
+
+---
+
+## 📌 Feature Importance & Insights
+
+* Most important features influencing delivery time:
+
+  * Distance
+  * Traffic Level
+  * Time of Day
+
+### 💡 Business Insights:
+
+* Reducing delivery distance and optimizing routes can improve efficiency
+* Managing peak-hour traffic is critical for reducing delays
+* Assigning experienced couriers can improve delivery performance
 
 ---
 
@@ -92,6 +140,9 @@ Performed analysis using in-memory SQLite:
 * NumPy
 * Matplotlib
 * Seaborn
+* Scikit-learn
+* XGBoost
+* LightGBM
 * SQLite
 
 ---
@@ -103,7 +154,7 @@ Performed analysis using in-memory SQLite:
 git clone <your-repo-link>
 
 # Install dependencies
-pip install pandas numpy matplotlib seaborn
+pip install pandas numpy matplotlib seaborn scikit-learn xgboost lightgbm
 
 # Run the notebook
 jupyter notebook Food_Delivery_.ipynb
@@ -111,21 +162,27 @@ jupyter notebook Food_Delivery_.ipynb
 
 ---
 
-## 📌 Future Improvements
+## 🔮 Future Improvements
 
-* Build Machine Learning models (Regression)
-* Improve prediction accuracy
+* Perform advanced feature engineering
+* Try ensemble models (stacking/blending)
+* Build real-time prediction API using FastAPI
 * Deploy as a web application
-* Add real-time delivery prediction system
+* Integrate live traffic APIs for real-world usage
 
 ---
 
 ## 💡 Conclusion
 
-This project demonstrates how data analysis can uncover patterns affecting delivery performance and help optimize logistics systems.
+This project demonstrates how data analysis and machine learning can be used to understand and optimize delivery operations.
+
+It highlights that:
+
+* Simpler models can outperform complex models when relationships are linear
+* Data-driven insights can significantly improve business decisions
 
 ---
 
 ## ⭐ Support
 
-If you found this project useful, give it a ⭐ on GitHub!
+If you found this project useful, consider giving it a ⭐ on GitHub!
